@@ -1,0 +1,503 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  Github, 
+  Linkedin, 
+  Mail, 
+  Phone, 
+  Menu, 
+  X, 
+  ChevronRight, 
+  ChevronDown,
+  Code, 
+  Cpu, 
+  Globe, 
+  BookOpen, 
+  Award, 
+  Users,
+  ExternalLink,
+  Download,
+  Lightbulb,
+  Target
+} from 'lucide-react';
+
+const App = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+  const [scrolled, setScrolled] = useState(false);
+  
+  // State for expanding reflections
+  const [expandedReflections, setExpandedReflections] = useState({});
+
+  const toggleReflection = (id) => {
+    setExpandedReflections(prev => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+      const sections = ['home', 'philosophy', 'about', 'experience', 'projects', 'leadership', 'contact'];
+      const current = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+      if (current) setActiveSection(current);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { name: 'Home', href: '#home' },
+    { name: 'Philosophy', href: '#philosophy' },
+    { name: 'Experience', href: '#experience' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Leadership', href: '#leadership' },
+    { name: 'Contact', href: '#contact' },
+  ];
+
+  return (
+    <div className="min-h-screen bg-slate-900 text-slate-100 font-sans selection:bg-cyan-500 selection:text-white">
+      
+      {/* Navigation */}
+      <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-slate-900/95 backdrop-blur-md border-b border-slate-800 shadow-lg' : 'bg-transparent'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16 items-center">
+            <div className="flex-shrink-0 flex items-center gap-2">
+              <div className="w-8 h-8 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center text-white font-bold">
+                IA
+              </div>
+              <span className="font-bold text-xl tracking-tight">Ibrahim<span className="text-cyan-400">Atatri</span></span>
+            </div>
+            
+            <div className="hidden md:flex space-x-8">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className={`text-sm font-medium transition-colors duration-200 ${
+                    activeSection === link.href.substring(1) 
+                      ? 'text-cyan-400' 
+                      : 'text-slate-300 hover:text-white'
+                  }`}
+                >
+                  {link.name}
+                </a>
+              ))}
+            </div>
+
+            <div className="md:hidden flex items-center">
+              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-slate-300 hover:text-white p-2">
+                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {isMenuOpen && (
+          <div className="md:hidden bg-slate-800 border-b border-slate-700">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700"
+                >
+                  {link.name}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </nav>
+
+      {/* Hero Section - Central Message Introduction */}
+      <section id="home" className="pt-32 pb-20 md:pt-40 md:pb-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-12">
+        <div className="flex-1 space-y-6 text-center md:text-left">
+          <div className="inline-flex items-center px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-sm font-medium border border-cyan-500/20 mb-4">
+            <span className="w-2 h-2 rounded-full bg-cyan-400 mr-2 animate-pulse"></span>
+            Software Engineering Student & Community Leader
+          </div>
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white">
+            Bridging technical innovation with <br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">Human Connection</span>
+          </h1>
+          <p className="text-lg text-slate-400 max-w-2xl mx-auto md:mx-0 leading-relaxed">
+            Welcome to my ePortfolio. Here, I explore the intersection of <strong>Machine Learning</strong>, <strong>Full-Stack Development</strong>, and <strong>Community Service</strong>. My goal is to build intuitive applications that solve real human problems.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4">
+            <a href="#projects" className="px-8 py-3 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white font-medium transition-all shadow-lg shadow-cyan-500/20 flex items-center justify-center gap-2">
+              Explore Artifacts <ChevronRight size={18} />
+            </a>
+            <a href="#philosophy" className="px-8 py-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-medium border border-slate-700 transition-all flex items-center justify-center gap-2">
+              My Philosophy
+            </a>
+          </div>
+        </div>
+        
+        {/* Visual Element representing Code + People */}
+        <div className="flex-1 relative w-full max-w-md md:max-w-full flex justify-center">
+          <div className="relative w-72 h-72 md:w-96 md:h-96 group">
+            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full opacity-20 blur-3xl group-hover:opacity-30 transition-opacity duration-500"></div>
+            <div className="relative w-full h-full bg-slate-800/50 backdrop-blur-xl rounded-2xl border border-slate-700 shadow-2xl p-8 flex flex-col justify-center items-center text-center transition-transform duration-500 hover:scale-[1.02]">
+              <Users size={64} className="text-cyan-400 mb-6" />
+              <h3 className="text-xl font-bold text-white mb-2">My Mission</h3>
+              <p className="text-slate-300 font-light">
+                "To use code not just as a tool for calculation, but as a bridge for communication and community building."
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Professional Philosophy (New Section for Rubric "Central Message") */}
+      <section id="philosophy" className="py-20 bg-slate-800/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-white mb-4">Professional Philosophy</h2>
+            <p className="text-slate-400 max-w-2xl mx-auto">
+              My identity as an engineer is defined by three core pillars. These guide my academic choices and project selection.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-slate-900 p-8 rounded-xl border-t-4 border-cyan-500 shadow-lg">
+              <Lightbulb className="w-10 h-10 text-cyan-400 mb-4" />
+              <h3 className="text-xl font-bold text-white mb-3">Continuous Learning</h3>
+              <p className="text-slate-400 text-sm leading-relaxed">
+                Technology evolves rapidly. My 4.0 GPA and Udacity Nanodegrees aren't just accolades; they represent a commitment to adaptability. I believe an engineer must remain a student forever to remain relevant.
+              </p>
+            </div>
+            <div className="bg-slate-900 p-8 rounded-xl border-t-4 border-blue-500 shadow-lg">
+              <Target className="w-10 h-10 text-blue-400 mb-4" />
+              <h3 className="text-xl font-bold text-white mb-3">Problem Solving</h3>
+              <p className="text-slate-400 text-sm leading-relaxed">
+                Whether tuning hyperparameters for an AI model or scheduling tournaments for 100+ students, I approach problems analytically. I break down complex systems into manageable components to find efficient solutions.
+              </p>
+            </div>
+            <div className="bg-slate-900 p-8 rounded-xl border-t-4 border-purple-500 shadow-lg">
+              <Users className="w-10 h-10 text-purple-400 mb-4" />
+              <h3 className="text-xl font-bold text-white mb-3">Community Impact</h3>
+              <p className="text-slate-400 text-sm leading-relaxed">
+                Code doesn't exist in a vacuum. My role as a Senator and Ambassador has taught me that the best software serves people. I aim to create inclusive digital spaces that consider the diverse needs of users.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Education & Skills (Artifacts of Knowledge) */}
+      <section id="about" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div>
+            <h2 className="text-3xl font-bold text-white mb-6 flex items-center gap-3">
+              <BookOpen className="text-cyan-400" /> Academic Foundation
+            </h2>
+            <div className="bg-slate-800 rounded-xl p-6 border border-slate-700 hover:border-cyan-500/50 transition-colors">
+              <div className="flex justify-between items-start mb-4">
+                <div>
+                  <h3 className="text-xl font-bold text-white">B.Sc. Software Engineering</h3>
+                  <p className="text-cyan-400">University of Michigan-Flint</p>
+                </div>
+                <span className="bg-slate-700 px-3 py-1 rounded text-sm text-white">Exp. 2028</span>
+              </div>
+              <p className="text-slate-300 mb-4">Cumulative GPA: <span className="text-green-400 font-bold">4.00</span></p>
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 text-sm text-slate-400">
+                  <Award size={16} className="text-yellow-500" /> University Honors Program
+                </div>
+                <div className="flex items-center gap-2 text-sm text-slate-400">
+                  <Award size={16} className="text-yellow-500" /> Dean's List (Winter 2025)
+                </div>
+              </div>
+              
+              <div className="mt-6 pt-6 border-t border-slate-700">
+                <h4 className="font-semibold text-white mb-3">Reflective Insight</h4>
+                <p className="text-slate-400 text-sm italic">
+                  "Maintaining a 4.0 GPA while managing leadership roles has taught me rigorous time management. It demonstrates my ability to handle high-pressure academic environments while contributing to campus life."
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-3xl font-bold text-white mb-6 flex items-center gap-3">
+              <Cpu className="text-purple-400" /> Technical Arsenal
+            </h2>
+            <div className="bg-slate-800 rounded-xl p-6 border border-slate-700">
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-3">Core Languages</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {['Python', 'C++', 'JavaScript', 'HTML/CSS', 'SQL'].map(skill => (
+                      <span key={skill} className="px-3 py-1 bg-slate-900 rounded-md text-slate-200 text-sm border border-slate-600">{skill}</span>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-3">Modern Frameworks</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {['React.js', 'TensorFlow', 'Keras', 'Tailwind CSS', 'Git/GitHub'].map(skill => (
+                      <span key={skill} className="px-3 py-1 bg-slate-900 rounded-md text-cyan-400 text-sm border border-slate-600">{skill}</span>
+                    ))}
+                  </div>
+                </div>
+                <div className="pt-4 border-t border-slate-700">
+                  <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-3">Professional Certifications</h3>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3">
+                      <div className="w-1.5 h-1.5 rounded-full bg-green-400 mt-2"></div>
+                      <div>
+                        <p className="text-white text-sm font-medium">AI Programming with Python</p>
+                        <p className="text-xs text-slate-500">Udacity Nanodegree</p>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-1.5 h-1.5 rounded-full bg-green-400 mt-2"></div>
+                      <div>
+                        <p className="text-white text-sm font-medium">Front-End Web Development</p>
+                        <p className="text-xs text-slate-500">Udacity Nanodegree</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Section with Critical Reflection */}
+      <section id="experience" className="py-20 bg-slate-800/30">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-white mb-12 text-center">Professional Experience & Reflection</h2>
+          
+          <div className="space-y-8">
+            {/* Experience 1 */}
+            <div className="bg-slate-800 rounded-xl p-8 border-l-4 border-purple-500 shadow-lg">
+              <div className="flex flex-col md:flex-row justify-between mb-4">
+                <div>
+                  <h3 className="text-xl font-bold text-white">International Student Ambassador</h3>
+                  <p className="text-purple-400">UM-Flint Undergraduate Office</p>
+                </div>
+                <span className="text-slate-500 text-sm mt-2 md:mt-0">Aug 2025 - Present</span>
+              </div>
+              <ul className="list-disc list-inside text-slate-300 space-y-2 mb-6 ml-2">
+                <li>Support new international students during orientation and integration.</li>
+                <li>Assist prospective students with admissions and onboarding processes.</li>
+              </ul>
+              
+              <button 
+                onClick={() => toggleReflection('job1')}
+                className="flex items-center gap-2 text-sm text-cyan-400 font-medium hover:text-cyan-300 transition-colors"
+              >
+                {expandedReflections['job1'] ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+                Read Critical Reflection
+              </button>
+              
+              <div className={`grid transition-all duration-300 ease-in-out ${expandedReflections['job1'] ? 'grid-rows-[1fr] opacity-100 mt-4' : 'grid-rows-[0fr] opacity-0'}`}>
+                <div className="overflow-hidden">
+                  <div className="bg-slate-900/50 p-6 rounded-lg border border-slate-700 italic text-slate-300">
+                    <p className="mb-3"><strong className="text-purple-400">The Challenge:</strong> Many students face culture shock. The administrative process is easy to explain, but emotional safety is harder to cultivate.</p>
+                    <p><strong className="text-purple-400">Future Application:</strong> This role has honed my empathy and communication skills. As a future software engineer, this experience reminds me that <span className="text-white">User Experience (UX)</span> isn't just about button placement—it's about making the user feel welcome and understood, regardless of their background.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Experience 2 */}
+            <div className="bg-slate-800 rounded-xl p-8 border-l-4 border-blue-500 shadow-lg">
+              <div className="flex flex-col md:flex-row justify-between mb-4">
+                <div>
+                  <h3 className="text-xl font-bold text-white">Intramural Sports Supervisor</h3>
+                  <p className="text-blue-400">UM-Flint Recreation Center</p>
+                </div>
+                <span className="text-slate-500 text-sm mt-2 md:mt-0">Aug 2025 - Present</span>
+              </div>
+              <ul className="list-disc list-inside text-slate-300 space-y-2 mb-6 ml-2">
+                <li>Coordinate tournaments and scheduling for 100+ participants.</li>
+                <li>Supervise games ensuring rule compliance and player safety.</li>
+              </ul>
+              
+              <button 
+                onClick={() => toggleReflection('job2')}
+                className="flex items-center gap-2 text-sm text-cyan-400 font-medium hover:text-cyan-300 transition-colors"
+              >
+                {expandedReflections['job2'] ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+                Read Critical Reflection
+              </button>
+              
+              <div className={`grid transition-all duration-300 ease-in-out ${expandedReflections['job2'] ? 'grid-rows-[1fr] opacity-100 mt-4' : 'grid-rows-[0fr] opacity-0'}`}>
+                <div className="overflow-hidden">
+                  <div className="bg-slate-900/50 p-6 rounded-lg border border-slate-700 italic text-slate-300">
+                    <p><strong className="text-blue-400">Skill Transfer:</strong> Managing 100+ participants requires real-time conflict resolution and logistical planning. This relates directly to <span className="text-white">Project Management</span> in software development—managing resources, handling unexpected bugs (conflicts), and ensuring the final product (the tournament) runs smoothly.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Artifacts / Projects Section */}
+      <section id="projects" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl font-bold text-white mb-4 text-center">Selected Artifacts</h2>
+        <p className="text-center text-slate-400 mb-12 max-w-2xl mx-auto">
+          These projects were selected to demonstrate my progression from basic web development to complex AI implementation.
+        </p>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          
+          {/* Artifact 1 */}
+          <div className="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 flex flex-col">
+            <div className="h-40 bg-gradient-to-r from-slate-700 to-slate-600 flex items-center justify-center">
+              <Cpu size={48} className="text-slate-400" />
+            </div>
+            <div className="p-6 flex-1 flex flex-col">
+              <h3 className="text-xl font-bold text-white mb-2">Breed Image Classifier</h3>
+              <p className="text-slate-400 text-sm mb-4">Built a TensorFlow/Keras model achieving 92% accuracy through hyperparameter tuning.</p>
+              
+              <div className="mt-auto pt-4 border-t border-slate-700">
+                <button 
+                  onClick={() => toggleReflection('proj1')}
+                  className="w-full text-left text-sm text-cyan-400 hover:text-white transition-colors flex justify-between items-center"
+                >
+                  Project Reflection {expandedReflections['proj1'] ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+                </button>
+                {expandedReflections['proj1'] && (
+                  <div className="mt-3 text-sm text-slate-300 bg-slate-900 p-3 rounded italic animate-fadeIn">
+                    "This project taught me that data quality is often more important than the algorithm itself. I struggled with overfitting initially, which forced me to learn data augmentation techniques—a critical skill for real-world AI deployment."
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Artifact 2 */}
+          <div className="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 flex flex-col">
+            <div className="h-40 bg-gradient-to-r from-slate-700 to-slate-600 flex items-center justify-center">
+              <BookOpen size={48} className="text-slate-400" />
+            </div>
+            <div className="p-6 flex-1 flex flex-col">
+              <h3 className="text-xl font-bold text-white mb-2">Grades Made Simple</h3>
+              <p className="text-slate-400 text-sm mb-4">Online tutoring platform for 50+ students with peer mentoring tools.</p>
+              
+              <div className="mt-auto pt-4 border-t border-slate-700">
+                <button 
+                  onClick={() => toggleReflection('proj2')}
+                  className="w-full text-left text-sm text-cyan-400 hover:text-white transition-colors flex justify-between items-center"
+                >
+                  Project Reflection {expandedReflections['proj2'] ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+                </button>
+                {expandedReflections['proj2'] && (
+                  <div className="mt-3 text-sm text-slate-300 bg-slate-900 p-3 rounded italic animate-fadeIn">
+                    "Scaling to 50+ users revealed the importance of database efficiency and clean UI. It was my first experience managing 'customers,' which taught me to prioritize feature requests based on user impact rather than just technical complexity."
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Artifact 3 */}
+          <div className="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 flex flex-col">
+            <div className="h-40 bg-gradient-to-r from-slate-700 to-slate-600 flex items-center justify-center">
+              <Code size={48} className="text-slate-400" />
+            </div>
+            <div className="p-6 flex-1 flex flex-col">
+              <h3 className="text-xl font-bold text-white mb-2">Personal Portfolio</h3>
+              <p className="text-slate-400 text-sm mb-4">Responsive React application designed with accessibility and UX principles.</p>
+              
+              <div className="mt-auto pt-4 border-t border-slate-700">
+                <button 
+                  onClick={() => toggleReflection('proj3')}
+                  className="w-full text-left text-sm text-cyan-400 hover:text-white transition-colors flex justify-between items-center"
+                >
+                  Project Reflection {expandedReflections['proj3'] ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+                </button>
+                {expandedReflections['proj3'] && (
+                  <div className="mt-3 text-sm text-slate-300 bg-slate-900 p-3 rounded italic animate-fadeIn">
+                    "I built this not just to display work, but to practice React Component structure. It demonstrates my ability to take a static concept (a resume) and transform it into an interactive, digital narrative."
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* Leadership Section */}
+      <section id="leadership" className="py-20 bg-slate-800/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-white mb-12 text-center">Community Leadership</h2>
+          
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="p-6 bg-slate-900 rounded-lg border border-slate-700 hover:-translate-y-1 transition-transform">
+              <div className="text-cyan-400 font-bold mb-2">Vice President</div>
+              <div className="text-white text-lg font-semibold mb-1">International Student Org</div>
+              <p className="text-slate-400 text-sm mb-4">Organized cultural programs for 100+ participants.</p>
+              <p className="text-xs text-slate-500 italic border-t border-slate-800 pt-3">
+                "Taught me the power of inclusive leadership and cross-cultural communication."
+              </p>
+            </div>
+
+            <div className="p-6 bg-slate-900 rounded-lg border border-slate-700 hover:-translate-y-1 transition-transform">
+              <div className="text-purple-400 font-bold mb-2">Founder</div>
+              <div className="text-white text-lg font-semibold mb-1">Listen, Learn, Discuss Club</div>
+              <p className="text-slate-400 text-sm mb-4">Led 15+ guest sessions with CEOs.</p>
+              <p className="text-xs text-slate-500 italic border-t border-slate-800 pt-3">
+                "Developed my networking skills and ability to facilitate high-level professional dialogue."
+              </p>
+            </div>
+
+            <div className="p-6 bg-slate-900 rounded-lg border border-slate-700 hover:-translate-y-1 transition-transform">
+              <div className="text-blue-400 font-bold mb-2">Senator</div>
+              <div className="text-white text-lg font-semibold mb-1">Student Government</div>
+              <p className="text-slate-400 text-sm mb-4">Represented student body in committees.</p>
+              <p className="text-xs text-slate-500 italic border-t border-slate-800 pt-3">
+                "Gave me insight into institutional decision making and advocacy."
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20 border-t border-slate-800">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold text-white mb-6">Let's Connect</h2>
+          <p className="text-slate-400 mb-12">
+            I am always looking for opportunities to apply my technical skills to meaningful projects.
+          </p>
+          
+          <div className="flex justify-center gap-6">
+            <a href="mailto:ibrahimatatri@gmail.com" className="flex items-center gap-2 text-white hover:text-cyan-400 transition-colors">
+              <Mail /> ibrahimatatri@gmail.com
+            </a>
+            <a href="https://linkedin.com" className="flex items-center gap-2 text-white hover:text-cyan-400 transition-colors">
+              <Linkedin /> LinkedIn
+            </a>
+            <a href="https://github.com" className="flex items-center gap-2 text-white hover:text-cyan-400 transition-colors">
+              <Github /> GitHub
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-slate-950 py-8 text-center text-slate-600 text-sm">
+        <p>© 2025 Ibrahim Atatri. Built with React & Tailwind CSS.</p>
+      </footer>
+    </div>
+  );
+};
+
+export default App;
