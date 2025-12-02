@@ -21,11 +21,8 @@
 </head>
 <body class="min-h-screen bg-slate-900 text-slate-100 font-sans selection:bg-cyan-500 selection:text-white">
 
-  <!-- Hidden helper element so Tailwind generates these classes (for JS toggling) -->
-  <div class="hidden bg-slate-900/95 border-b border-slate-800 shadow-lg"></div>
-
   <!-- Navigation -->
-  <nav id="main-nav" class="fixed w-full z-50 transition-all duration-300 bg-transparent">
+  <nav id="main-nav" class="fixed w-full z-50 transition-all duration-300 bg-slate-900/95 border-b border-slate-800 shadow-lg">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between h-16 items-center">
         <div class="flex-shrink-0 flex items-center gap-2">
@@ -42,7 +39,7 @@
           <a href="#home" data-section="home" class="nav-link text-sm font-medium text-cyan-400">Home</a>
           <a href="#philosophy" data-section="philosophy" class="nav-link text-sm font-medium text-slate-300 hover:text-white">Philosophy</a>
           <a href="#experience" data-section="experience" class="nav-link text-sm font-medium text-slate-300 hover:text-white">Experience</a>
-          <a href="#projects" data-section="projects" class="nav-link text-sm font-medium text-slate-300 hover:text-white">Projects</a>
+          <a href="#projects" data-section="projects" class="nav-link text-sm font-medium text-slate-300 hover:text-white">Artifacts</a>
           <a href="#leadership" data-section="leadership" class="nav-link text-sm font-medium text-slate-300 hover:text-white">Leadership</a>
           <a href="#contact" data-section="contact" class="nav-link text-sm font-medium text-slate-300 hover:text-white">Contact</a>
         </div>
@@ -63,7 +60,7 @@
         <a href="#home" data-section="home" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700">Home</a>
         <a href="#philosophy" data-section="philosophy" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700">Philosophy</a>
         <a href="#experience" data-section="experience" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700">Experience</a>
-        <a href="#projects" data-section="projects" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700">Projects</a>
+        <a href="#projects" data-section="projects" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700">Artifacts</a>
         <a href="#leadership" data-section="leadership" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700">Leadership</a>
         <a href="#contact" data-section="contact" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700">Contact</a>
       </div>
@@ -96,18 +93,18 @@
         </a>
       </div>
     </div>
-
-    <!-- Visual Element -->
+    
+    <!-- Headshot Section -->
     <div class="flex-1 relative w-full max-w-md md:max-w-full flex justify-center">
-      <div class="relative w-72 h-72 md:w-96 md:h-96 group">
-        <div class="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full opacity-20 blur-3xl group-hover:opacity-30 transition-opacity duration-500"></div>
-        <div class="relative w-full h-full bg-slate-800/50 backdrop-blur-xl rounded-2xl border border-slate-700 shadow-2xl p-8 flex flex-col justify-center items-center text-center transition-transform duration-500 hover:scale-[1.02]">
-          <div class="text-cyan-400 text-5xl mb-4">👥</div>
-          <h3 class="text-xl font-bold text-white mb-2">My Mission</h3>
-          <p class="text-slate-300 font-light">
-            "To use code not just as a tool for calculation, but as a bridge for communication and community building."
-          </p>
-        </div>
+      <div class="relative w-64 h-64 md:w-80 md:h-80 group">
+        <div class="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full opacity-50 blur-2xl group-hover:opacity-75 transition-opacity duration-500"></div>
+        
+        <!-- REPLACE src BELOW WITH: images/headshot.jpg -->
+        <img 
+          src="https://placehold.co/400x400/1e293b/white?text=Ibrahim+Photo" 
+          alt="Ibrahim Atatri Headshot" 
+          class="relative w-full h-full object-cover rounded-full border-4 border-slate-800 shadow-2xl z-10"
+        >
       </div>
     </div>
   </section>
@@ -168,7 +165,8 @@
               <h3 class="text-xl font-bold text-white">B.Sc. Software Engineering</h3>
               <p class="text-cyan-400">University of Michigan-Flint</p>
             </div>
-            <span class="bg-slate-700 px-3 py-1 rounded text-sm text-white">Exp. 2028</span>
+            <!-- FIXED: Date format per feedback -->
+            <span class="bg-slate-700 px-3 py-1 rounded text-sm text-white">Expected 2028</span>
           </div>
           <p class="text-slate-300 mb-4">
             Cumulative GPA: <span class="text-green-400 font-bold">4.00</span>
@@ -201,7 +199,8 @@
         <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
           <div class="space-y-6">
             <div>
-              <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-3">Core Languages</h3>
+              <!-- FIXED: Terminology per feedback -->
+              <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-3">Programming Languages</h3>
               <div class="flex flex-wrap gap-2">
                 <span class="px-3 py-1 bg-slate-900 rounded-md text-slate-200 text-sm border border-slate-600">Python</span>
                 <span class="px-3 py-1 bg-slate-900 rounded-md text-slate-200 text-sm border border-slate-600">C++</span>
@@ -212,7 +211,8 @@
             </div>
 
             <div>
-              <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-3">Modern Frameworks</h3>
+              <!-- FIXED: Terminology per feedback -->
+              <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-3">Programming Frameworks</h3>
               <div class="flex flex-wrap gap-2">
                 <span class="px-3 py-1 bg-slate-900 rounded-md text-cyan-400 text-sm border border-slate-600">React.js</span>
                 <span class="px-3 py-1 bg-slate-900 rounded-md text-cyan-400 text-sm border border-slate-600">TensorFlow</span>
@@ -329,23 +329,28 @@
     </div>
   </section>
 
-  <!-- Projects -->
+  <!-- Projects (Artifacts) -->
   <section id="projects" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <h2 class="text-3xl font-bold text-white mb-4 text-center">Selected Artifacts</h2>
     <p class="text-center text-slate-400 mb-12 max-w-2xl mx-auto">
-      These projects were selected to demonstrate my progression from basic web development to complex AI implementation.
+      Selected works demonstrating my progression from basic hardware to complex AI and web implementation.
     </p>
 
-    <div class="grid md:grid-cols-3 gap-8">
-      <!-- Artifact 1 -->
-      <div class="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 flex flex-col">
-        <div class="h-40 bg-gradient-to-r from-slate-700 to-slate-600 flex items-center justify-center">
-          <span class="text-slate-200 text-4xl">🧮</span>
-        </div>
+    <!-- Grid changed to 2 columns so images are larger and fit 4 items nicely -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+      
+      <!-- Artifact 1: Cat/Dog Classifier -->
+      <div class="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 flex flex-col group hover:border-cyan-500/50 transition-colors">
+        <!-- REPLACE src WITH: images/project-ai.jpg -->
+        <img 
+          src="https://placehold.co/600x400/1e293b/white?text=Cat+Dog+Classifier" 
+          alt="Cat/Dog Classifier Project" 
+          class="h-48 w-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
         <div class="p-6 flex-1 flex flex-col">
-          <h3 class="text-xl font-bold text-white mb-2">Breed Image Classifier</h3>
+          <h3 class="text-xl font-bold text-white mb-2">Cat/Dog Breed Image Classifier</h3>
           <p class="text-slate-400 text-sm mb-4">
-            Built a TensorFlow/Keras model achieving 92% accuracy through hyperparameter tuning.
+            Built a TensorFlow/Keras model achieving 92% accuracy through hyperparameter tuning and data augmentation.
           </p>
 
           <div class="mt-auto pt-4 border-t border-slate-700">
@@ -367,13 +372,20 @@
         </div>
       </div>
 
-      <!-- Artifact 2 -->
-      <div class="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 flex flex-col">
-        <div class="h-40 bg-gradient-to-r from-slate-700 to-slate-600 flex items-center justify-center">
-          <span class="text-slate-200 text-4xl">🧑‍🏫</span>
-        </div>
+      <!-- Artifact 2: Grades Made Simple -->
+      <div class="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 flex flex-col group hover:border-purple-500/50 transition-colors">
+        <!-- REPLACE src WITH: images/project-grades.jpg -->
+        <img 
+          src="https://placehold.co/600x400/1e293b/white?text=Grades+Made+Simple" 
+          alt="Grades Made Simple Project" 
+          class="h-48 w-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
         <div class="p-6 flex-1 flex flex-col">
-          <h3 class="text-xl font-bold text-white mb-2">Grades Made Simple</h3>
+          <div class="flex justify-between items-start">
+             <h3 class="text-xl font-bold text-white mb-2">Grades Made Simple</h3>
+             <!-- ADDED: Instagram Link -->
+             <a href="https://www.instagram.com/grades_made_simple1?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="text-slate-400 hover:text-purple-400"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+          </div>
           <p class="text-slate-400 text-sm mb-4">
             Online tutoring platform for 50+ students with peer mentoring tools.
           </p>
@@ -397,15 +409,23 @@
         </div>
       </div>
 
-      <!-- Artifact 3 -->
-      <div class="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 flex flex-col">
-        <div class="h-40 bg-gradient-to-r from-slate-700 to-slate-600 flex items-center justify-center">
-          <span class="text-slate-200 text-4xl">💻</span>
-        </div>
+      <!-- Artifact 3: Website Development (Portfolio) -->
+      <div class="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 flex flex-col group hover:border-blue-500/50 transition-colors">
+        <!-- REPLACE src WITH: images/project-web.jpg -->
+        <img 
+          src="https://placehold.co/600x400/1e293b/white?text=Website+Development" 
+          alt="Website Development Project" 
+          class="h-48 w-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
         <div class="p-6 flex-1 flex flex-col">
-          <h3 class="text-xl font-bold text-white mb-2">Personal Portfolio</h3>
+          <div class="flex justify-between items-start">
+             <!-- FIXED: Renamed Title per feedback -->
+             <h3 class="text-xl font-bold text-white mb-2">Website Development</h3>
+             <!-- ADDED: Live Link -->
+             <a href="https://ibrahimatatri.github.io/Ibrahim-Portfolio/" target="_blank" class="text-slate-400 hover:text-blue-400 font-mono text-xs border border-slate-600 px-2 py-1 rounded">View Live</a>
+          </div>
           <p class="text-slate-400 text-sm mb-4">
-            Responsive web application designed with accessibility and UX principles.
+             Responsive portfolio website deployed via GitHub Pages, focusing on clean code and accessibility.
           </p>
 
           <div class="mt-auto pt-4 border-t border-slate-700">
@@ -419,8 +439,39 @@
             </button>
             <div id="proj3-reflection" class="mt-3 hidden">
               <div class="text-sm text-slate-300 bg-slate-900 p-3 rounded italic fade-in">
-                "I built this not just to display work, but to practice component-based structure. It demonstrates my ability to take a
-                static concept (a resume) and transform it into an interactive, digital narrative."
+                "I built this site to practice React principles in a static environment. It demonstrates my ability to transform a static resume into an interactive digital narrative, focusing on mobile responsiveness."
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEW ARTIFACT 4: ModuLock -->
+      <div class="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 flex flex-col group hover:border-green-500/50 transition-colors">
+        <!-- REPLACE src WITH: images/project-arduino.jpg -->
+        <img 
+          src="https://placehold.co/600x400/1e293b/white?text=ModuLock+Arduino" 
+          alt="ModuLock Project" 
+          class="h-48 w-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+        <div class="p-6 flex-1 flex flex-col">
+          <h3 class="text-xl font-bold text-white mb-2">ModuLock Security System</h3>
+          <p class="text-slate-400 text-sm mb-4">
+            CIT 100 Final Project: A 3-way secure door lock using Arduino, fingerprint sensor, RFID, and keypad.
+          </p>
+
+          <div class="mt-auto pt-4 border-t border-slate-700">
+            <button
+              data-toggle="reflection"
+              data-target="proj4-reflection"
+              class="w-full text-left text-sm text-cyan-400 hover:text-white transition-colors flex justify-between items-center"
+            >
+              <span>Project Reflection</span>
+              <span class="chevron">▶</span>
+            </button>
+            <div id="proj4-reflection" class="mt-3 hidden">
+              <div class="text-sm text-slate-300 bg-slate-900 p-3 rounded italic fade-in">
+                "Collaborating on ModuLock taught me the importance of clear communication in teamwork. Merging code for three distinct sensors required us to strictly define pinouts and logic flow together before writing a single line of code, ensuring a seamless integration."
               </div>
             </div>
           </div>
@@ -475,15 +526,17 @@
       </p>
 
       <div class="flex flex-col sm:flex-row justify-center gap-6">
-        <a href="mailto:ibrahimatatri@gmail.com" class="flex items-center gap-2 text-white hover:text-cyan-400 transition-colors">
+        <a href="mailto:ibrahimatatri@gmail.com" class="flex items-center gap-2 text-white hover:text-cyan-400 transition-colors justify-center">
           <span>📧</span>
           <span>ibrahimatatri@gmail.com</span>
         </a>
-        <a href="https://linkedin.com" target="_blank" class="flex items-center gap-2 text-white hover:text-cyan-400 transition-colors">
+        <!-- FIXED: Updated LinkedIn Link -->
+        <a href="https://linkedin.com/in/ibrahim-atatri" target="_blank" class="flex items-center gap-2 text-white hover:text-cyan-400 transition-colors justify-center">
           <span>🔗</span>
           <span>LinkedIn</span>
         </a>
-        <a href="https://github.com" target="_blank" class="flex items-center gap-2 text-white hover:text-cyan-400 transition-colors">
+        <!-- FIXED: Updated GitHub Link -->
+        <a href="https://github.com/Ibrahimatatri" target="_blank" class="flex items-center gap-2 text-white hover:text-cyan-400 transition-colors justify-center">
           <span>🐙</span>
           <span>GitHub</span>
         </a>
@@ -529,15 +582,6 @@
     function updateActiveSection() {
       const scrollY = window.scrollY;
       const triggerLine = 120; // pixels from top of viewport
-
-      // Nav background on scroll
-      if (scrollY > 50) {
-        nav.classList.remove('bg-transparent');
-        nav.classList.add('bg-slate-900/95', 'border-b', 'border-slate-800', 'shadow-lg');
-      } else {
-        nav.classList.add('bg-transparent');
-        nav.classList.remove('bg-slate-900/95', 'border-b', 'border-slate-800', 'shadow-lg');
-      }
 
       let currentSection = 'home';
       sectionIds.forEach(id => {
